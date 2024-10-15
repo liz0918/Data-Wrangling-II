@@ -1,47 +1,29 @@
----
-title: "Strings and Factors"
-output: github_document
----
+Strings and Factors
+================
 
-```{r setup, include=FALSE}
-library(tidyverse)
-library(rvest)
-library(forcats)
+# Let’s do strings
 
-library(p8105.datasets)
-
-knitr::opts_chunk$set(
-	echo = TRUE,
-	warning = FALSE,
-	fig.width = 8, 
-  fig.height = 6,
-  out.width = "90%"
-)
-
-theme_set(theme_minimal() + theme(legend.position = "bottom"))
-
-options(
-  ggplot2.continuous.colour = "viridis",
-  ggplot2.continuous.fill = "viridis"
-)
-
-scale_colour_discrete = scale_colour_viridis_d
-scale_fill_discrete = scale_fill_viridis_d
-```
-
-# Let's do strings
-```{r}
+``` r
 string_vec = c("my", "name", "is", "lizy")
 
 str_detect(string_vec, "a")
-
-str_replace(string_vec, "lizy", "Lizy")
-
-str_replace(string_vec, "i", "I")
-
 ```
 
-```{r}
+    ## [1] FALSE  TRUE FALSE FALSE
+
+``` r
+str_replace(string_vec, "lizy", "Lizy")
+```
+
+    ## [1] "my"   "name" "is"   "Lizy"
+
+``` r
+str_replace(string_vec, "i", "I")
+```
+
+    ## [1] "my"   "name" "Is"   "lIzy"
+
+``` r
 string_vec = c(
   "i think we all rule for participating",
   "i think i have been caught",
@@ -50,12 +32,19 @@ string_vec = c(
   )
 
 str_detect(string_vec, "^i think")
+```
+
+    ## [1]  TRUE  TRUE  TRUE FALSE
+
+``` r
 #carrot indicates to find the string in the beginning of the line
 #dollar sign indicatest of ind the string at the end of the line
 str_detect(string_vec, "i think$")
 ```
 
-```{r}
+    ## [1] FALSE FALSE FALSE  TRUE
+
+``` r
 string_vec = c(
   "Time for a Pumpkin Spice Latte!",
   "went to the #pumpkinpatch last weekend",
@@ -64,11 +53,15 @@ string_vec = c(
   )
 
 str_detect(string_vec,"[Pp]umpkin")
-#multiple options for "P or p" inside the bracket will detect both upper and lowercase
-
 ```
 
-```{r}
+    ## [1]  TRUE  TRUE  TRUE FALSE
+
+``` r
+#multiple options for "P or p" inside the bracket will detect both upper and lowercase
+```
+
+``` r
 string_vec = c(
   '7th inning stretch',
   '1st half soon to begin. Texas won the toss.',
@@ -77,12 +70,17 @@ string_vec = c(
   )
 
 str_detect(string_vec, "^[0-9][a-zA-Z]")
+```
+
+    ## [1]  TRUE  TRUE FALSE  TRUE
+
+``` r
 #any numbers [0-9]
 #any lowercase letter[a-z]
 #any uppercase letter[A-Z]
 ```
 
-```{r}
+``` r
 string_vec = c(
   'Its 7:11 in the evening',
   'want to go to 7-11?',
@@ -91,11 +89,17 @@ string_vec = c(
   )
 
 str_detect(string_vec, "7.11")
+```
+
+    ## [1]  TRUE  TRUE FALSE  TRUE
+
+``` r
 #the "." matches with any character
 ```
 
-How things start to get real strange...
-```{r}
+How things start to get real strange…
+
+``` r
 string_vec = c(
   'The CI is [2, 5]',
   ':-]',
@@ -105,16 +109,10 @@ string_vec = c(
 
 #looking for open bracket
 str_detect(string_vec, "\\[")
-#two slashes before indicates to what we're looking for 
 ```
 
+    ## [1]  TRUE FALSE  TRUE  TRUE
 
-
-
-
-
-
-
-
-
-
+``` r
+#two slashes before indicates to what we're looking for 
+```
