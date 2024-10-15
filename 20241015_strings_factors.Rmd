@@ -108,7 +108,20 @@ str_detect(string_vec, "\\[")
 #two slashes before indicates to what we're looking for 
 ```
 
+## Factors ...
+```{r}
+sex_vec = factor(c("male", "male", "female", "female"))
 
+as.numeric(sex_vec)
+```
+
+do some releveling...
+
+```{r}
+sex_vec = fct_relevel(sex_vec, "male")
+# changed underlying structure: male first, female second
+as.numeric(sex_vec)
+```
 
 
 
